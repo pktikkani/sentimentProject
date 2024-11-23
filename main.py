@@ -64,7 +64,7 @@ def get():
                hx_swap="innerHTML"),
         cls="flex justify-end mb-2"
     )
-    page = Body(H1('Chatbot Demo'),
+    page = Body(H1('Sentiment Analysis Assistant',),
                 buttons,
                 Div(*[ChatMessage(msg_idx) for msg_idx, msg in enumerate(messages)],
                     id="chatlist", cls="chat-box h-[73vh] overflow-y-auto"),
