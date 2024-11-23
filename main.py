@@ -72,7 +72,7 @@ def get():
                     ws_send=True, hx_ext="ws", ws_connect="/wscon",
                     cls="flex space-x-2 mt-2"),
                 cls="p-4 max-w-lg mx-auto")
-    return Title('Chatbot Demo'), page
+    return Title('Sentiment Analysis Assistant'), page
 
 
 # Add a new route to handle clearing the chat
