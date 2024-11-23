@@ -64,7 +64,7 @@ def get():
                hx_swap="innerHTML"),
         cls="flex justify-end mb-2"
     )
-    page = Body(H1('Sentiment Analysis Assistant',),
+    page = Body(H1('ToneTracker',),
                 buttons,
                 Div(*[ChatMessage(msg_idx) for msg_idx, msg in enumerate(messages)],
                     id="chatlist", cls="chat-box h-[73vh] overflow-y-auto"),
@@ -72,7 +72,7 @@ def get():
                     ws_send=True, hx_ext="ws", ws_connect="/wscon",
                     cls="flex space-x-2 mt-2"),
                 cls="p-4 max-w-lg mx-auto")
-    return Title('Sentiment Analysis Assistant'), page
+    return Title('ToneTracker'), page
 
 
 # Add a new route to handle clearing the chat
