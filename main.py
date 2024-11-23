@@ -48,10 +48,24 @@ def ChatInput():
                  placeholder="Type a message",
                  cls="input input-bordered w-full", hx_swap_oob='true')
 
+# New function to generate empty chat list
+def EmptyChatList():
+    return Div(id="chatlist", cls="chat-box h-[73vh] overflow-y-auto")
+
 # The main screen
 @app.route("/")
 def get():
+    # Add a container div for the buttons with flex layout
+    buttons = Div(
+        Button("Clear Chat",
+               cls="btn btn-error",
+               hx_post="/clear",
+               hx_target="#chatlist",
+               hx_swap="innerHTML"),
+        cls="flex justify-end mb-2"
+    )
     page = Body(H1('Chatbot Demo'),
+                buttons,
                 Div(*[ChatMessage(msg_idx) for msg_idx, msg in enumerate(messages)],
                     id="chatlist", cls="chat-box h-[73vh] overflow-y-auto"),
                 Form(Group(ChatInput(), Button("Send", cls="btn btn-primary")),
@@ -60,6 +74,14 @@ def get():
                 cls="p-4 max-w-lg mx-auto")
     return Title('Chatbot Demo'), page
 
+
+# Add a new route to handle clearing the chat
+@app.route("/clear")
+def post():
+    # Clear the messages list
+    messages.clear()
+    # Return an empty chat list
+    return EmptyChatList()
 
 @app.ws('/wscon')
 async def ws(msg:str, send):
